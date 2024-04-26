@@ -1,0 +1,198 @@
+/*usado para dar reset nos padrões do navegador*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --text-color:white;
+    --bg-url: url(assets/assets/bg-mobile.jpg);
+    --strokre-color: rgba(255, 255, 255, 0.5);
+    --surface-color: rgba(255, 255, 255, 0.1);
+    --surface-color-hover: rgba(255, 255, 255, 0.1);
+    --highlight-color: rgba(255, 255, 255, 0.5);
+    --switch-bg-url: url(./assets/assets/moon-stars.svg)
+}
+.light{
+    --text-color:black;
+    --bg-url: url(assets/assets/bg-mobile-light.jpg);
+    --strokre-color: rgba(0, 0, 0, 0.5);
+    --surface-color: rgba(0, 0, 0, 0.1);
+    --surface-color-hover: rgba(0, 0, 0, 0.1);
+    --highlight-color: rgba(0, 0, 0, 0.5);
+    --switch-bg-url: url(./assets/assets/sun.svg)
+}
+
+body{
+    /*
+    background-image: url(./assets/assets/bg-mobile.jpg);
+    url é uma função utilizada para colocar imagens!
+    background-repeat: no-repeat; no-repeat = não repetir a imagem&
+    background-position: top center; top = deixa na margem superior da página
+    background-size: cover; cover = cobrir todo a área visivel
+    */
+
+    background: var(--bg-url) no-repeat top center/cover ;
+
+
+}
+/* colocar o body certo, e lembrar de por a cor para não confundir, achando que está errado*/
+body *{
+  font-family: "Inter", sans-serif;
+    color: var(--text-color);
+}
+
+#container {
+    width: 100%;
+    max-width: 580px;
+    margin-top: 56px; /*ajustou a altura do icone em relação a página*/
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+
+    padding-top: 30px; /*padding é o tamanhao em relação ao retangulo dentro do container*/
+    padding: 0 24px;/*controlar as laterais*/
+    /*usado para alinhar ao centro =margin-right: auto; margin-left: auto;*/
+}
+/*pai dos inline, comando para a estrutura de aparição na tela*/
+#profile {
+    text-align: center;
+    padding: auto;
+    
+}
+
+/*filho do de cima*/
+#profile img {
+    width: 112px;
+    /*margin: auto; em elementos inline, não conseguimos usar o <---*/
+}
+/* switch*/
+#switch {
+    position: relative;
+    width: 64px;
+
+    top: 10px;
+    margin: 4px auto;
+}
+#switch button{
+    width: 32px;
+    height: 32px;
+    background: white var(--switch-bg-url) no-repeat center;
+    border: 0;
+    border-radius: 50%;
+
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 1;
+    transform: translateY(-50%);
+
+    animation: slide-back 0.2s ;
+}
+
+.light #switch button{
+    animation: slide-in 0.4s forwards;
+}
+
+#switch span{
+    display: block;
+    width: 64px;
+    height: 24px;
+    background-color: var(--surface-color);
+    border: 1px solid var(--strokre-color);
+    backdrop-filter: blur(4px) ;
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 9999px;
+
+}
+
+#instagram {
+    font-weight: 500;
+    line-height: 24px;
+    margin-top: 10px;
+    
+    
+}
+/*links*/
+ul{
+    list-style: none;/*retirar a bolinhas*/
+    display: flex;/*sempre por para ocupar 100% do espaço sendo em vertical ou horizontal*/
+    flex-direction: column;
+    gap: 16px;
+
+    padding: 24px 0;
+}
+ul li a{
+    
+    display: flex; /*ocupar 100% do espaço dele no container*/
+    justify-content: center;/*colocar as palavras ao meio*/
+    align-items: center;/*colocar o conteudo ao centro*/
+    margin-top: 20px;
+    padding: 16px 24px;
+
+    background: var(--surface-color);/*manusear as cores*/
+    border:1px solid var(--strokre-color);
+    border-radius: 8px;
+    backdrop-filter: blur(4px);/*colocar desfoque no item*/
+    text-decoration: none;/*retirar linha de negrito*/
+    font-weight: 500;
+    transition: background 0.2s; /*efeito de transição*/
+}
+/*sudo selector*/
+ul li a:hover{
+    background: var(--surface-color-hover);/*manusear as cores*/
+    border:1.5px solid var(--text-color);
+}
+
+#sociallinks{
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+
+    padding: 24px 0;
+
+    font-size: 24px;
+}
+
+#sociallinks a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+#sociallinks a :hover{
+    background: var(--highlight-color);
+    padding: 16px;
+    border-radius: 50%;
+    transition: background 0.5s;
+}
+
+@media (min-width: 700px){
+   :root {
+    --bg-url: url(./assets/assets/bg-desktop.jpg);
+   } 
+
+   .light{
+    --bg-url: url(./assets/assets/bg-desktop-light.jpg);
+   }
+}
+
+@keyframes slide-in{
+    from{
+        left: 0;
+    }
+    to {
+        left: 50%;
+    }
+
+}
+@keyframes slide-back{
+    from{
+        left: 50%;
+    }
+    to{
+        left:0;
+    }
+}
